@@ -90,7 +90,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
 
 ### 3. Share ETA and Order Information with Distribution Center
 
-**Endpoint**: `/share-eta-dc`
+**Endpoint**: `/share-eta`
 
 **Method**: `POST`
 
