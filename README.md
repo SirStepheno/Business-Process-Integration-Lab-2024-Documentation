@@ -21,7 +21,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
 **Description**: Sends truck and order details from the Truck Company to the Control Tower.
 
 **Payload**:
-```json
+```jsonc
 {
     "TruckCompanyId": "TC10", // Use groupnumber
     "Truck": {
@@ -81,7 +81,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
 **Description**: Shares the calculated ETA with the Truck Company.
 
 **Payload**:
-```json
+```jsonc
 {
     "LicencePlate": "TC6A23",
     "ETA": 120  // Datetime
@@ -101,7 +101,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
 **Description**: Shares the calculated ETA and order information with the Distribution Center. **Only the orders that are important for that Distribution Center are shared, so not always all the orders in the arriving truck**
 
 **Payload**:
-```json
+```jsonc
 {
     "ControlTowerId": "CT", // Use group number
     "Truck": {
@@ -142,7 +142,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 **Description**: Notifies the Truck Company that the truck is 15 minutes away from the destination. Uses the license plate as identifier. **For this moment, the ETA is set and doesn't change, this makes it different from the other ETA update request**
 
 **Payload**:
-```json
+```jsonc
 {
     "LicencePlate": "TC6A23",
     "ETA": 15
@@ -162,7 +162,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 **Description**: Notifies the Distribution Center that the truck is 15 minutes away from the destination. Uses the order id as identifier. **For this moment, the ETA is set and doesn't change, this makes it different from the other ETA update request**
 
 **Payload**:
-```json
+```jsonc
 {
     "OrderIds": [789],
     "ETA": 15
@@ -182,7 +182,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 **Description**: Notifies the Truck Company that the truck is loaded and ready for departure.
 
 **Payload**:
-```json
+```jsonc
 {
     "OrderId": 789,
     "Truck": {
@@ -208,14 +208,14 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 **Description**: Sends a request from the Distribution Center to the Control Tower for the current ETA of a specific order.
 
 **Payload**:
-```json
+```jsonc
 {
     "OrderId": 789
 }
 ```
 
 **Response**:
-```json
+```jsonc
 {
     "status": "succes",
     "OrderId": 789,
@@ -229,7 +229,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 Each API endpoint responds with a standard structure that includes a `status`, a `message`, and, where applicable, additional data to provide context. The HTTP status code of the response provides a general indication of the request's outcome, while the `status` and `message` fields in the JSON body offer a more detailed explanation of what occurred.
 
 ### General Response Structure
-```json
+```jsonc
 {
     "status": "success" | "error",
     "message": "Description of the outcome"
@@ -237,7 +237,7 @@ Each API endpoint responds with a standard structure that includes a `status`, a
 ```
 
 ### Example Succes Response
-```json
+```jsonc
 {
     "status": "success",
     "message": "Truck and order information received successfully."
@@ -245,7 +245,7 @@ Each API endpoint responds with a standard structure that includes a `status`, a
 ```
 
 ### Example Error Response
-```json
+```jsonc
 {
     "status": "error",
     "message": "Missing required fields: 'Truck.LicencePlate'."
