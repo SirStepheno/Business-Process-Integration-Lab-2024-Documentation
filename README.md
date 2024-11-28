@@ -1,4 +1,4 @@
-# Logistics API Documentation
+# Logistics API Documentation By Group 1
 
 This documentation outlines the API endpoints required for communication between the Truck Company, Control Tower, and Distribution Center in a logistics management system. The APIs facilitate the exchange of information about trucks, orders, ETAs, locations, and status updates.
 
@@ -10,7 +10,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
 
 ### 1. Send Truck and Order Information
 
-**Endpoint**: `/send-order-information`
+**REST Endpoint**: `/rest/ct-send-order-information`
 
 **Sender**: Truck Company
 
@@ -25,8 +25,8 @@ The number of each API call corresponds with the bold red numbers in the Public 
 {
     "TruckCompanyId": "TC10", // Use groupnumber
     "Truck": {
-        "LicencePlate": "TC6A23", // Always start your LicencePlate with TC x, where x is your group number, to ensure that every licence plate is unique between the TCs
-        "Length": 12,
+        "LicencePlate": "TC06ABC", // Always start your LicencePlate with TCxx, where x is your group number (with leading 0 if < 10), length = 7 chars, to ensure that every licence plate is unique between the TCs
+        "Height": 4,
         "Width": 2.5,
         "Weight": 9000
     },
@@ -70,7 +70,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
 
 ### 2. Share ETA with Truck Company
 
-**Endpoint**: `/share-eta`
+**REST Endpoint**: `/rest/tc-share-eta`
 
 **Method**: `POST`
 
@@ -83,14 +83,14 @@ The number of each API call corresponds with the bold red numbers in the Public 
 **Payload**:
 ```jsonc
 {
-    "LicencePlate": "TC6A23",
+    "LicencePlate": "TC06ABC",
     "ETA": 120  // Datetime
 }
 ```
 
 ### 3. Share ETA and Order Information with Distribution Center
 
-**Endpoint**: `/share-eta`
+**REST Endpoint**: `/rest/dc-share-eta`
 
 **Method**: `POST`
 
@@ -105,8 +105,8 @@ The number of each API call corresponds with the bold red numbers in the Public 
 {
     "ControlTowerId": "CT", // Use group number
     "Truck": {
-        "LicencePlate": "TC6A23",
-        "Length": 12,
+        "LicencePlate": "TC06ABC",
+        "Height": 4,
         "Width": 2.5,
         "Weight": 9000
     },
@@ -131,47 +131,85 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 
 ### 5. Send Arrival Notification (15-min ETA) to Truck Company
 
-**Endpoint**: `/notify-truck-arrival`
+**SOAP Endpoint**: `/soap/tc-notify-truck-arrival`
 
-**Sender**: Control Tower
+**Sender**: Control Tower  
 
-**Receiver**: Truck Company
+**Receiver**: Truck Company  
 
-**Method**: `POST`
+**Description**: Notifies the Truck Company that the truck is 15 minutes away from the destination. Uses the license plate as identifier. **For this moment, the ETA is set and doesn't change, this makes it different from the other ETA update request**  
 
-**Description**: Notifies the Truck Company that the truck is 15 minutes away from the destination. Uses the license plate as identifier. **For this moment, the ETA is set and doesn't change, this makes it different from the other ETA update request**
+**Request**:  
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://example.com/namespace">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:NotifyTruckArrivalRequest>
+         <ns:LicencePlate xsi:type="xsd:string">TC06ABC</ns:LicencePlate>
+         <ns:ETA xsi:type="xsd:dateTime">15</ns:ETA>
+      </ns:NotifyTruckArrivalRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
 
-**Payload**:
-```jsonc
-{
-    "LicencePlate": "TC6A23",
-    "ETA": 15
-}
+**Success Response**:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://example.com/namespace">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:NotifyTruckArrivalResponse>
+         <ns:Status xsi:type="xsd:string">success</ns:Status> <!-- or error -->
+         <ns:Message xsi:type="xsd:string">Description of the outcome</ns:Message>
+      </ns:NotifyTruckArrivalResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
 ```
 
 ### 6. Send Arrival Notification (15-min ETA) to Distribution Center
 
-**Endpoint**: `/notify-truck-arrival`
+**SOAP Endpoint**: `/soap/dc-notify-truck-arrival`
 
 **Sender**: Control Tower
 
-**Receiver**: Distribution Center
+**Receiver**: Distribution Center  
 
-**Method**: `POST`
+**Description**: Notifies the Distribution Center that the truck is 15 minutes away from the destination. Uses the order id as identifier. **For this moment, the ETA is set and doesn't change, this makes it different from the other ETA update request**  
 
-**Description**: Notifies the Distribution Center that the truck is 15 minutes away from the destination. Uses the order id as identifier. **For this moment, the ETA is set and doesn't change, this makes it different from the other ETA update request**
+**Request**:  
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://example.com/namespace">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:NotifyTruckArrivalRequest>
+         <ns:OrderIds>
+            <ns:OrderId xsi:type="xsd:integer">789</ns:OrderId>
+         </ns:OrderIds>
+         <ns:ETA xsi:type="xsd:dateTime">15</ns:ETA>
+      </ns:NotifyTruckArrivalRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
 
-**Payload**:
-```jsonc
-{
-    "OrderIds": [789],
-    "ETA": 15
-}
+**Success Response**:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://example.com/namespace">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:NotifyTruckArrivalResponse>
+         <ns:Status xsi:type="xsd:string">success</ns:Status> <!-- or error -->
+         <ns:Message xsi:type="xsd:string">Description of the outcome</ns:Message>
+      </ns:NotifyTruckArrivalResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
 ```
 
 ### 7. Send "Truck Ready for Departure" Notification
 
-**Endpoint**: `/api/dc/notify-truck-ready`
+**REST Endpoint**: `/rest/tc-notify-truck-ready`
 
 **Method**: `POST`
 
@@ -186,7 +224,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 {
     "OrderId": 789,
     "Truck": {
-        "LicencePlate": "TC6A23"
+        "LicencePlate": "TC06ABC"
     },
     "Details": {
         "LoadedWeight": 8900,
@@ -197,7 +235,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 
 ### 8. Request Current ETA from Control Tower
 
-**Endpoint**: `/request-current-eta`
+**REST Endpoint**: `/ct-request-current-eta`
 
 **Sender**: Distribution Center
 
@@ -224,9 +262,9 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 }
 ```
 
-## API Responses (except for )
+## REST Responses (except for request 8)
 
-Each API endpoint responds with a standard structure that includes a `status`, a `message`, and, where applicable, additional data to provide context. The HTTP status code of the response provides a general indication of the request's outcome, while the `status` and `message` fields in the JSON body offer a more detailed explanation of what occurred.
+Each API endpoind responds with a standard structure that includes a `status`, a `message`, and, where applicable, additional data to provide context. The HTTP status code of the response provides a general indication of the request's outcome, while the `status` and `message` fields in the JSON body offer a more detailed explanation of what occurred.
 
 ### General Response Structure
 ```jsonc
