@@ -10,7 +10,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
 
 ### 1. Send Truck and Order Information
 
-**REST Endpoint**: `/rest/ct-send-order-information`
+**REST Endpoint**: `/rest/send-order-information`
 
 **Sender**: Truck Company
 
@@ -85,7 +85,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
 
 ### 2. Share ETA with Truck Company
 
-**REST Endpoint**: `/rest/tc-share-eta`
+**REST Endpoint**: `/rest/share-eta`
 
 **Method**: `POST`
 
@@ -105,7 +105,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
 
 ### 3. Share ETA and Order Information with Distribution Center
 
-**REST Endpoint**: `/rest/dc-share-eta`
+**REST Endpoint**: `/rest/share-eta`
 
 **Method**: `POST`
 
@@ -141,7 +141,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 
 ### 5. Send Arrival Notification (15-min ETA) to Truck Company
 
-**SOAP Endpoint**: `/soap/tc-notify-truck-arrival`
+**SOAP Endpoint**: `/soap/notify-truck-arrival`
 
 **Sender**: Control Tower  
 
@@ -179,7 +179,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 
 ### 6. Send Arrival Notification (15-min ETA) to Distribution Center
 
-**SOAP Endpoint**: `/soap/dc-notify-truck-arrival`
+**SOAP Endpoint**: `/soap/notify-truck-arrival`
 
 **Sender**: Control Tower
 
@@ -219,7 +219,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 
 ### 7. Send "Truck Ready for Departure" Notification
 
-**REST Endpoint**: `/rest/tc-notify-truck-ready`
+**REST Endpoint**: `/rest/notify-truck-ready`
 
 **Method**: `POST`
 
@@ -242,7 +242,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 
 ### 8. Send "Truck Ready for Departure" Notification
 
-**REST Endpoint**: `/rest/tc-notify-truck-ready`
+**REST Endpoint**: `/rest/notify-truck-ready`
 
 **Method**: `POST`
 
@@ -265,7 +265,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 
 ### 9. Request Current ETA from Control Tower
 
-**REST Endpoint**: `/ct-request-current-eta`
+**REST Endpoint**: `/rest/request-current-eta`
 
 **Sender**: Distribution Center
 
