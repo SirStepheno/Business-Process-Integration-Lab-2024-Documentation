@@ -38,7 +38,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
     "DCID": "DC04",
     "Orders": [
         {
-            "OrderId": 789,
+            "OrderID": 789,
             "Products": [
                 {
                     "SKU": "PT-001", // Refers to "Table with products"
@@ -47,7 +47,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
             ]
         },
         {
-            "OrderId": 678,
+            "OrderID": 678,
             "Products": [
                 {
                     "SKU": "PT-002", // Refers to "Table with products"
@@ -118,7 +118,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
     "TruckLicencePlate": "TC06ABC"
     "Orders": [
         {
-            "OrderId": 789,
+            "OrderID": 789,
             "Products": [
                 {
                     "SKU": "PT-001",
@@ -190,9 +190,9 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
    <soapenv:Header/>
    <soapenv:Body>
       <ns:NotifyTruckArrivalRequest>
-         <ns:OrderIds>
-            <ns:OrderId xsi:type="xsd:integer">789</ns:OrderId>
-         </ns:OrderIds>
+         <ns:OrderIDs>
+            <ns:OrderID xsi:type="xsd:integer">789</ns:OrderID>
+         </ns:OrderIDs>
          <ns:ETA xsi:type="xsd:dateTime">15</ns:ETA>
       </ns:NotifyTruckArrivalRequest>
    </soapenv:Body>
@@ -251,7 +251,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 **Payload**:
 ```jsonc
 {
-    "OrderIds": [789],
+    "OrderIDs": [789],
     "Details": {
         "LoadedWeight": 8900,
         "LoadedPallets": 4
@@ -274,7 +274,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 **Payload**:
 ```jsonc
 {
-    "OrderId": 789
+    "OrderID": 789
 }
 ```
 
@@ -282,7 +282,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 ```jsonc
 {
     "status": "succes",
-    "OrderId": 789,
+    "OrderID": 789,
     "ETA": 120,
     "message": "ETA of order is attached"
 }
