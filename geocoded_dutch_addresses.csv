@@ -1,16 +1,27 @@
 Group,Address,Postal code,City,Latitude,Longitude
-CT - Group 1,Hengelosestraat 75,7514 AE,Enschede,52.2233766,6.8887017
-CT - Group 6,Ootmarsumsestraat 178,7603 AL,Almelo,52.3651917,6.6723761999999995
-DC - Group 4,Dieselstraat 11,7556 AD,Hengelo,52.2545121,6.7766951
-DC - Group 13,Amersfoortsestraatweg 27,1412 KB,Naarden,52.2834426,5.1783309
-DC - Group 16,Fokkerstraat 34,3772 MR,Barneveld,52.12747942763459,5.564961384929897
-DC - Group 12,Van Voordenpark 15,5301 KP,Zaltbommel,51.79765,5.2612179
-DC - Group 18,Delta 100,6825 MV,Arnhem,51.9756003,5.9705012
-DC - Group 17,Newtonweg 10,4104 AJ,Culemborg,51.941230158748034,5.197383184833982
-TC - Group 8,De Veenweg 1,7671 HJ,Vriezenveen,,
-TC - Group 10,Industriestraat 30,7482 EZ,Haaksbergen,52.1517682,6.7166212
-TC - Group 7,Brinkstraat 20,7901 LA,Hoogeveen,52.730409,6.4771039
-TC - Group 9,Van Hilststraat 10,5145 RK,Waalwijk,51.70438437259142,5.033236598843907
-TC - Group 11,Utrechtseweg 310,6812 AR,Arnhem,51.985218,5.8744478
-TC - Group 5,Heerenveenseweg 2,8471 ZK,Wolvega,52.8767355,6.0019059
-TC - Group 15,Innovatieweg 8,7007 CD,Doetinchem,51.94544492678377,6.2750051
+CT01,Hengelosestraat 75,7514 AE,Enschede,52.2233766,6.8887017
+CT06,Ootmarsumsestraat 178,7603 AL,Almelo,52.3651917,6.6723761999999995
+DC04,Dieselstraat 11,7556 AD,Hengelo,52.2545121,6.7766951
+DC13,Amersfoortsestraatweg 27,1412 KB,Naarden,52.2834426,5.1783309
+DC16,Fokkerstraat 34,3772 MR,Barneveld,52.12747942763459,5.564961384929897
+DC12,Van Voordenpark 15,5301 KP,Zaltbommel,51.79765,5.2612179
+DC18,Delta 100,6825 MV,Arnhem,51.9756003,5.9705012
+DC17,Newtonweg 10,4104 AJ,Culemborg,51.941230158748034,5.197383184833982
+TC08,De Veenweg 1,7671 HJ,Vriezenveen,,
+TC10,Industriestraat 30,7482 EZ,Haaksbergen,52.1517682,6.7166212
+TC07,Brinkstraat 20,7901 LA,Hoogeveen,52.730409,6.4771039
+TC09,Van Hilststraat 10,5145 RK,Waalwijk,51.70438437259142,5.033236598843907
+TC11,Utrechtseweg 310,6812 AR,Arnhem,51.985218,5.8744478
+TC05,Heerenveenseweg 2,8471 ZK,Wolvega,52.8767355,6.0019059
+TC15,Innovatieweg 8,7007 CD,Doetinchem,51.94544492678377,6.2750051
+SP1,Stationsplein 1,7511 JD,Enschede,52.2223317,6.8927473
+SP2,Deventerweg 10,7418 CK,Deventer,52.2506079,6.2826507
+SP3,Grotestraat 125,7607 CH,Almelo,52.3546102,6.6660272
+SP4,Bornsestraat 400,7556 BN,Hengelo,52.2862222,6.7743283
+SP5,Kolkweg 20,8243 PN,Lelystad,52.5049397,5.4361418
+SP6,Marktstraat 12,7571 ED,Oldenzaal,52.3130047,6.9303222
+SP7,Prins Hendrikstraat 1,7941 EP,Meppel,52.6963218,6.1864988
+SP8,Zutphenseweg 15,7241 KN,Lochem,52.1567691,6.4119127
+SP9,Het Rond 20,3995 DX,Houten,52.0349541,5.1690653
+SP10,Gronausestraat 300,7533 BM,Enschede,52.2180305,6.9269995
+SP11,Vriezenveenseweg 110,7671 AE,Vriezenveen,52.4217656,6.6769678

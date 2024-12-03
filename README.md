@@ -20,50 +20,65 @@ The number of each API call corresponds with the bold red numbers in the Public 
 
 **Description**: Sends truck and order details from the Truck Company to the Control Tower.
 
-**Payload**:
+**Payload if destination is DC**:
 ```jsonc
 {
-    "TruckCompanyId": "TC10", // Use groupnumber
+    "TCID": "TC10", // Use groupnumber
     "Truck": {
         "LicencePlate": "TC06ABC", // Always start your LicencePlate with TCxx, where x is your group number (with leading 0 if < 10), length = 7 chars, to ensure that every licence plate is unique between the TCs
         "Height": 4,
         "Width": 2.5,
-        "Weight": 9000
+        "Weight": 9000,
+        "Location": {
+            "Long": 37.7749, // Start location route
+            "Lat": -122.4194 // Start location route
+        }
+        
     },
+    "DCID": "DC04",
     "Orders": [
         {
             "OrderId": 789,
-            "Locations": [12, 56],
-            "OrderProducts": [
+            "Products": [
                 {
-                    "ProductId": "PROD6789",
-                    "Quantity": 2,
-                    "LoadType": "PT-001" // Refers to "Table with products"
+                    "SKU": "PT-001", // Refers to "Table with products"
+                    "Quantity": 2
                 }
             ]
         },
         {
             "OrderId": 678,
-            "Locations": [34, 56],
-            "OrderProducts": [
+            "Products": [
                 {
-                    "ProductId": "PROD9876",
-                    "Quantity": 3,
-                    "LoadType": "PT-002" // Refers to "Table with products"
+                    "SKU": "PT-002", // Refers to "Table with products"
+                    "Quantity": 3
                 }
             ]
         }
-    ],
-    "StartLocation": {
-        "id": 0,
-        "Long": 37.7749,
-        "Lat": -122.4194
+    ]
+}
+```
+
+**Payload if destination is not DC**:
+```jsonc
+{
+    "TCID": "TC10", // Use groupnumber
+    "Truck": {
+        "LicencePlate": "TC06ABC", // Always start your LicencePlate with TCxx, where x is your group number (with leading 0 if < 10), length = 7 chars, to ensure that every licence plate is unique between the TCs
+        "Height": 4,
+        "Width": 2.5,
+        "Weight": 9000,
+        "Location": {
+            "Long": 37.7749, // Start location route
+            "Lat": -122.4194 // Start location route
+        }
+        
     },
-    "Destinations": {
-        "id": 12,
-        "DC": true, // Indicates if the destination is a Distribution Center or not, important for the CT
-        "Long": 34.0522,
-        "Lat": -118.2437
+    "Destination": {
+        "Location": {
+            "Long": 39.2345, // Start location route
+            "Lat": -119.2345 // Start location route
+        }
     }
 }
 ```
@@ -103,21 +118,16 @@ The number of each API call corresponds with the bold red numbers in the Public 
 **Payload**:
 ```jsonc
 {
-    "ControlTowerId": "CT", // Use group number
-    "Truck": {
-        "LicencePlate": "TC06ABC",
-        "Height": 4,
-        "Width": 2.5,
-        "Weight": 9000
-    },
+    "ControlTowerId": "CT01", // Use group number
+    "TruckLicencePlate": "TC06ABC"
     "Orders": [
         {
             "OrderId": 789,
-            "OrderProducts": [
+            "Products": [
                 {
-                    "ProductId": "PROD6789",
-                    "Quantity": 2,
-                    "LoadType": "PT-001"
+                    "SKU": "PT-001",
+                    "Quantity": 2
+                    
                 }
             ]
         }
@@ -146,7 +156,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
    <soapenv:Header/>
    <soapenv:Body>
       <ns:NotifyTruckArrivalRequest>
-         <ns:LicencePlate xsi:type="xsd:string">TC06ABC</ns:LicencePlate>
+         <ns:TruckLicencePlate xsi:type="xsd:string">TC06ABC</ns:TruckLicencePlate>
          <ns:ETA xsi:type="xsd:dateTime">15</ns:ETA>
       </ns:NotifyTruckArrivalRequest>
    </soapenv:Body>
@@ -215,17 +225,14 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 
 **Sender**: Distribution Center
 
-**Receiver**: Truck Company
+**Receiver**: Control Tower
 
-**Description**: Notifies the Truck Company that the truck is loaded and ready for departure.
+**Description**: Notifies the Control Tower that the truck is loaded and ready for departure.
 
 **Payload**:
 ```jsonc
 {
-    "OrderId": 789,
-    "Truck": {
-        "LicencePlate": "TC06ABC"
-    },
+    "TruckLicencePlate": "TC06ABC"
     "Details": {
         "LoadedWeight": 8900,
         "LoadedPallets": 4
@@ -233,7 +240,30 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 }
 ```
 
-### 8. Request Current ETA from Control Tower
+### 8. Send "Truck Ready for Departure" Notification
+
+**REST Endpoint**: `/rest/tc-notify-truck-ready`
+
+**Method**: `POST`
+
+**Sender**: Control Tower
+
+**Receiver**: Truck Compnay
+
+**Description**: Notifies the Truck Company that the truck is loaded and ready for departure.
+
+**Payload**:
+```jsonc
+{
+    "OrderIds": [789],
+    "Details": {
+        "LoadedWeight": 8900,
+        "LoadedPallets": 4
+    }
+}
+```
+
+### 9. Request Current ETA from Control Tower
 
 **REST Endpoint**: `/ct-request-current-eta`
 
