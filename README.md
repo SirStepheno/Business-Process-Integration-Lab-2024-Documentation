@@ -10,8 +10,6 @@ The number of each API call corresponds with the bold red numbers in the Public 
 
 ### 1. Send Truck and Order Information
 
-**REST Endpoint**: `/rest/send-order-information`
-
 **Sender**: Truck Company
 
 **Receiver**: Control Tower
@@ -21,6 +19,8 @@ The number of each API call corresponds with the bold red numbers in the Public 
 **Description**: Sends truck and order details from the Truck Company to the Control Tower.
 
 **Payload if destination is DC**:
+**REST Endpoint**: `/rest/truck-collect-orders`
+
 ```jsonc
 {
     "TCID": "TC10", // Use groupnumber
@@ -60,6 +60,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
 ```
 
 **Payload if destination is not DC**:
+**REST Endpoint**: `/rest/truck-deliver-to-supermarket`
 ```jsonc
 {
     "TCID": "TC10", // Use groupnumber
@@ -74,12 +75,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
         }
         
     },
-    "Destination": {
-        "Location": {
-            "Long": 39.2345, // Start location route
-            "Lat": -119.2345 // Start location route
-        }
-    }
+    "SPID": "SP01"
 }
 ```
 
