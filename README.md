@@ -190,10 +190,8 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
    <soapenv:Header/>
    <soapenv:Body>
       <ns:NotifyTruckArrivalRequest>
-         <ns:OrderIDs>
-            <ns:OrderID xsi:type="xsd:integer">789</ns:OrderID>
-         </ns:OrderIDs>
-         <ns:ETA xsi:type="xsd:dateTime">15</ns:ETA>
+        <ns:OrderID xsi:type="xsd:string">789</ns:OrderID>
+        <ns:ETA xsi:type="xsd:dateTime">15</ns:ETA>
       </ns:NotifyTruckArrivalRequest>
    </soapenv:Body>
 </soapenv:Envelope>
@@ -281,21 +279,18 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 **Response**:
 ```jsonc
 {
-    "status": "succes",
     "OrderID": 789,
     "ETA": 120,
-    "message": "ETA of order is attached"
 }
 ```
 
 ## REST Responses (except for request 8)
 
-Each API endpoind responds with a standard structure that includes a `status`, a `message`, and, where applicable, additional data to provide context. The HTTP status code of the response provides a general indication of the request's outcome, while the `status` and `message` fields in the JSON body offer a more detailed explanation of what occurred.
+Each API endpoind responds with a standard structure that includes a `message`, and, where applicable, additional data to provide context. The HTTP status code of the response provides a general indication of the request's outcome, while the `message` field in the JSON body offer a more detailed explanation of what occurred.
 
 ### General Response Structure
 ```jsonc
 {
-    "status": "success" | "error",
     "message": "Description of the outcome"
 }
 ```
@@ -303,7 +298,6 @@ Each API endpoind responds with a standard structure that includes a `status`, a
 ### Example Succes Response
 ```jsonc
 {
-    "status": "success",
     "message": "Truck and order information received successfully."
 }
 ```
@@ -311,7 +305,6 @@ Each API endpoind responds with a standard structure that includes a `status`, a
 ### Example Error Response
 ```jsonc
 {
-    "status": "error",
     "message": "Missing required fields: 'Truck.LicencePlate'."
 }
 ```
