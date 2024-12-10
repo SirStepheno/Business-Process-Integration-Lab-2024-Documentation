@@ -38,7 +38,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
     "DCID": "DC04",
     "Orders": [
         {
-            "OrderID": 789,
+            "OrderID": "AB123",
             "Products": [
                 {
                     "SKU": "PT-001", // Refers to "Table with products"
@@ -47,7 +47,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
             ]
         },
         {
-            "OrderID": 678,
+            "OrderID": "AB123",
             "Products": [
                 {
                     "SKU": "PT-002", // Refers to "Table with products"
@@ -118,7 +118,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
     "TruckLicencePlate": "TC06ABC"
     "Orders": [
         {
-            "OrderID": 789,
+            "OrderID": "AB123",
             "Products": [
                 {
                     "SKU": "PT-001",
@@ -190,7 +190,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
    <soapenv:Header/>
    <soapenv:Body>
       <ns:NotifyTruckArrivalRequest>
-        <ns:OrderID xsi:type="xsd:string">789</ns:OrderID>
+        <ns:OrderID xsi:type="xsd:string">"AB123"</ns:OrderID>
         <ns:ETA xsi:type="xsd:dateTime">15</ns:ETA>
       </ns:NotifyTruckArrivalRequest>
    </soapenv:Body>
@@ -226,7 +226,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 **Payload**:
 ```jsonc
 {
-    "OrderIDs": [789],
+    "OrderIDs": ["AB123"],
     "Details": {
         "LoadedWeight": 8900,
         "LoadedPallets": 4
@@ -272,15 +272,15 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 **Payload**:
 ```jsonc
 {
-    "OrderID": 789
+    "OrderID": "AB123"
 }
 ```
 
 **Response**:
 ```jsonc
 {
-    "OrderID": 789,
-    "ETA": 120,
+    "OrderID": "AB123",
+    "ETA": 120
 }
 ```
 
