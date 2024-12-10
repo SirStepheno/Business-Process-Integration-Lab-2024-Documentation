@@ -95,7 +95,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
 ```jsonc
 {
     "LicencePlate": "TC06ABC",
-    "ETA": 120  // Datetime
+    "ETA": "2024-12-10 16:26:50Z"
 }
 ```
 
@@ -128,7 +128,7 @@ The number of each API call corresponds with the bold red numbers in the Public 
             ]
         }
     ],
-    "ETA": 120
+    "ETA": "2024-12-10 16:26:50Z"
 }
 ```
 
@@ -280,7 +280,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 ```jsonc
 {
     "OrderID": "AB123",
-    "ETA": 120
+    "ETA": "2024-12-10 16:26:50Z"
 }
 ```
 
