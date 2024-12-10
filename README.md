@@ -145,33 +145,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 
 **Description**: Notifies the Truck Company that the truck is 15 minutes away from the destination. Uses the license plate as identifier. **For this moment, the ETA is set and doesn't change, this makes it different from the other ETA update request**  
 
-**Request**:  
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://example.com/namespace">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <ns:NotifyTruckArrivalRequest>
-         <ns:TruckLicencePlate xsi:type="xsd:string">TC06ABC</ns:TruckLicencePlate>
-         <ns:ETA xsi:type="xsd:dateTime">15</ns:ETA>
-      </ns:NotifyTruckArrivalRequest>
-   </soapenv:Body>
-</soapenv:Envelope>
-```
-
-**Success Response**:
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://example.com/namespace">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <ns:NotifyTruckArrivalResponse>
-         <ns:Status xsi:type="xsd:string">success</ns:Status> <!-- or error -->
-         <ns:Message xsi:type="xsd:string">Description of the outcome</ns:Message>
-      </ns:NotifyTruckArrivalResponse>
-   </soapenv:Body>
-</soapenv:Envelope>
-```
+See files starting with "Request 5" for the formatting.
 
 ### 6. Send Arrival Notification (15-min ETA) to Distribution Center
 
@@ -183,32 +157,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 
 **Description**: Notifies the Distribution Center that the truck is 15 minutes away from the destination. Uses the order id as identifier. **For this moment, the ETA is set and doesn't change, this makes it different from the other ETA update request**  
 
-**Request**:  
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://example.com/namespace">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <ns:NotifyTruckArrivalRequest>
-        <ns:OrderID xsi:type="xsd:string">"AB123"</ns:OrderID>
-        <ns:ETA xsi:type="xsd:dateTime">15</ns:ETA>
-      </ns:NotifyTruckArrivalRequest>
-   </soapenv:Body>
-</soapenv:Envelope>
-```
-
-**Success Response**:
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://example.com/namespace">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <ns:NotifyTruckArrivalResponse>
-         <ns:Status xsi:type="xsd:string">success</ns:Status> <!-- or error -->
-         <ns:Message xsi:type="xsd:string">Description of the outcome</ns:Message>
-      </ns:NotifyTruckArrivalResponse>
-   </soapenv:Body>
-</soapenv:Envelope>
+See files starting with "Request 6" for the formatting.
 ```
 
 ### 7. Send "Truck Ready for Departure" Notification

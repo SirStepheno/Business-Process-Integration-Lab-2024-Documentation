@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="Published_DC" targetNamespace="http://www.example.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://www.example.com/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.com/">
+      <xsd:element name="Microflow">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="NotifyTruckArrivalRequest">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="OrderID">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="ETA">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="MicroflowResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="NotifyTruckArrivalResponse">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="Status">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Message">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MicroflowRequest">
+    <wsdl:part name="parameters" element="tns:Microflow" />
+  </wsdl:message>
+  <wsdl:message name="MicroflowResponse">
+    <wsdl:part name="result" element="tns:MicroflowResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Published_DCPortType">
+    <wsdl:operation name="Microflow">
+      <wsdl:documentation></wsdl:documentation>
+      <wsdl:input message="tns:MicroflowRequest" />
+      <wsdl:output message="tns:MicroflowResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Published_DCSoap" type="tns:Published_DCPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Microflow">
+      <soap:operation soapAction="http://www.example.com/Microflow" />
+      <wsdl:input>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Published_DC">
+    <wsdl:port name="Published_DCPort" binding="tns:Published_DCSoap">
+      <soap:address location="http://localhost:8080/ws/Published_DC" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
