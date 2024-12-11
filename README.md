@@ -158,7 +158,6 @@ See files starting with "Request 5" for the formatting.
 **Description**: Notifies the Distribution Center that the truck is 15 minutes away from the destination. Uses the order id as identifier. **For this moment, the ETA is set and doesn't change, this makes it different from the other ETA update request**  
 
 See files starting with "Request 6" for the formatting.
-```
 
 ### 7. Send "Truck Ready for Departure" Notification
 
