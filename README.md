@@ -1,4 +1,5 @@
 # Logistics API Documentation By Group 1
+**Link to Swagger:** https://bpilgroup1-sandbox.mxapps.io/rest-doc/rest
 
 This documentation outlines the API endpoints required for communication between the Truck Company, Control Tower, and Distribution Center in a logistics management system. The APIs facilitate the exchange of information about trucks, orders, ETAs, locations, and status updates.
 
