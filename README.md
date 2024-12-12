@@ -226,7 +226,7 @@ This endpoint is abstracted out, because we don't exactly keep track of the loca
 **Payload**:
 ```jsonc
 {
-    "OrderIDs": ["AB123"],
+    "OrderID": "AB123",
     "Details": {
         "LoadedWeight": 8900,
         "LoadedPallets": 4
